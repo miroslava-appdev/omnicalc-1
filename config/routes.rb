@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get("/square_root/results", { :controller => "application", :action => "calculate_square_root" })
 
   #payment
-  #get("/payment/new", { :controller => "application", :action => "blank_payment_form" })
-  #get("/payment/results", { :controller => "application", :action => "calculate_payment" })
+  get("/payment/new", { :controller => "application", :action => "blank_payment_form" })
+  get("/payment/results", { :controller => "application", :action => "calculate_payment" })
 
   #random
   get("/random/new", { :controller => "application", :action => "blank_random_form"})

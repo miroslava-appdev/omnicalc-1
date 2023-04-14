@@ -24,6 +24,23 @@ class ApplicationController < ActionController::Base
   end 
 
   #payment
+  def blank_payment_form
+    render({ :template => "calculation_templates/payment_form.html.erb" })
+  end
+
+  def calculate_payment
+    @num_apr = params.fetch("user_apr").to_s(:percentage, { :precision => 4 })
+
+    @num_years = params.fetch("user_years").to_i
+
+    @num_principal = params.fetch("user_principal").to_s(:currency)
+
+    @apr_per_period = (@num_apr/100)/12
+
+    @monthly_payment = ((@apr_per_period * @num_principal) / (1 - (1 + @apr_per_period) ** -12)).to_s(:currency, { :precision => 2 })
+
+    render({ :template => "calculation_templates/payment_results.html.erb" })
+  end
 
   #random
 
